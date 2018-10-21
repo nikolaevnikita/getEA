@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block title %}Значения для отчетной таблицы{% endblock %}
+{% block page_content %}
+<form class="form form-horizontal" style="margin-left: 4%" method="post" role="form" autocomplete="off">
+  {{ wtf.form_field(form3.scan) }}
+  {{ wtf.form_field(form3.arch) }}
+  {{ wtf.form_field(form3.submit) }}
+</form>
+{% if not scan and not arch %}
+<div style="margin-top: 2%; margin-left: 3%">
+	<font color="Silver">Для заполнения отчетной таблицы о получении данных из РЭС вставьте поле из реестра со списком номеров сканирования или архивными номерами. <br>Также возможна обработка SQL-отчетов результата выгрузки ИТД (из программы getEA).</font></p>
+</div>
+{% endif %}
+{% if scan %}
+<div style="margin-top: 2%;  margin-left: 3%">
+	Номера сканов ({{length_s}} шт.):
+</div>
+<div style="margin-top: 1%; margin-left: 3%">
+	{{sc}}
+</div>
+{% endif %}
+{% if arch %}
+<div style="margin-top: 2%;  margin-left: 3%">
+	Архивные номера ({{length_a}} шт.):
+</div>
+<div style="margin-top: 1%; margin-left: 3%">
+	{{ar}}
+</div>
+{% endif %}
+{% endblock %}

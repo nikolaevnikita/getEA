@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block title %}Не найдены{% endblock %}
+{% block page_content %}
+<form class="form form-horizontal" style="margin-left: 4%" method="post" role="form" autocomplete="off">
+  {{ wtf.form_field(form2.log) }}
+  {{ wtf.form_field(form2.submit) }}
+</form>
+{% if not log %}
+<div style="margin-top: 2%; margin-left: 3%">
+	<font color="Silver">Для получения cписка незагруженных ИТД вставьте лог из программы getEA.</font></p>
+</div>
+{% endif %}
+{% if log %}
+{% if notfound %}
+<div style="margin-top: 2%">
+	<ul> 
+		Не найдены:
+	</ul>
+</div>
+{% endif %}
+<div style="margin-top: 1%">
+	<ul> 
+		{% for i in notfound %} 
+			<li style="list-style: none;">{{i}}</li> 
+		{% endfor %} 
+	</ul>
+</div>
+{% endif %}
+{% endblock %}
